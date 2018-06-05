@@ -1,16 +1,17 @@
 package app;
 
+import javax.swing.JDialog;
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.ui.ApplicationFrame;
 
-public class HumidityLineChart extends ApplicationFrame {
+public class HumidityLineChart extends JDialog {
 
 	public HumidityLineChart(String applicationTitle, String chartTitle) {
-		super(applicationTitle);
+		//super(applicationTitle);
 		JFreeChart lineChart = ChartFactory.createLineChart(chartTitle, "times", "humidity", createDataset(),
 				PlotOrientation.VERTICAL, true, true, false);
 		
