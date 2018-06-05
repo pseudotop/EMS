@@ -1,4 +1,4 @@
-package classEco;
+package dao;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+
+import vo.ClassEcoVO;
 
 public class ClassEcoDAO {
 	private Connection con;

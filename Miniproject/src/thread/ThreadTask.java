@@ -1,7 +1,10 @@
-package classEco;
+package thread;
 
 import java.util.Iterator;
 import java.util.List;
+
+import dao.ClassEcoDAO;
+import vo.ClassEcoVO;
 
 public class ThreadTask implements Runnable {
 	ClassEcoDAO dao = new ClassEcoDAO();
