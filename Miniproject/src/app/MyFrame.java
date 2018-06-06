@@ -1,12 +1,9 @@
 package app;
 
-import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,47 +12,54 @@ import javax.swing.JPanel;
 
 import org.jfree.ui.RefineryUtilities;
 
+import thread.ThreadTask;
+
 public class MyFrame extends JFrame{
 	JPanel allPanel, p1, p2, p3, p4;
 	JButton tempBtn, humidityBtn, innerDustBtn, outerDustBtn;
-	JLabel tempText, humidityText, innerDustText, outerDustText;
+	public static JLabel tempText, humidityText, innerDustText, outerDustText;
+	JLabel tempLabel,humidityLabel,innerDustLabel,outerDustLabel;
 
 	public MyFrame() {
-		setSize(300, 200);	
+		setSize(400, 200);	
 		
 		setTitle("강의실 환경 관리 시스템");
 
 		allPanel = new JPanel(new FlowLayout());
 
-		p1 = new JPanel(new GridLayout(1, 2));
+		p1 = new JPanel(new GridLayout(1, 3));
+		tempLabel = new JLabel("온도");
+		
 		tempText = new JLabel();
-		tempText.setText("온도");
+		tempText.setText("0");
 		
 		tempBtn = new JButton("온도 변화");
 		tempBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				TempLineChart chart = new TempLineChart("온도 변화", "Temperature");
-
+				TempLineChart chart = new TempLineChart("온도 변화", ThreadTask.list.get(0).getRegtime().substring(0,10)+" Temperature");
+				
 				chart.pack();
 				RefineryUtilities.centerFrameOnScreen(chart);
 				chart.setVisible(true);
 				
 			}
 		});
+		p1.add(tempLabel);
 		p1.add(tempText);
 		p1.add(tempBtn);
 
 		allPanel.add(p1);
 
-		p2 = new JPanel(new GridLayout(1, 2));
+		p2 = new JPanel(new GridLayout(1, 3));
+		humidityLabel = new JLabel("습도");
 		humidityText = new JLabel();
-		humidityText.setText("습도");
+		humidityText.setText("0");
 		humidityBtn = new JButton("습도 변화");
 		humidityBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				HumidityLineChart chart = new HumidityLineChart("습도 변화", "Humidity");
+				HumidityLineChart chart = new HumidityLineChart("습도 변화", ThreadTask.list.get(0).getRegtime().substring(0,10)+" Humidity");
 
 				chart.pack();
 				RefineryUtilities.centerFrameOnScreen(chart);
@@ -63,20 +67,22 @@ public class MyFrame extends JFrame{
 				
 			}
 		});
+		p2.add(humidityLabel);
 		p2.add(humidityText);
 		p2.add(humidityBtn);
 
 		allPanel.add(p2);
 
-		p3 = new JPanel(new GridLayout(1, 2));
+		p3 = new JPanel(new GridLayout(1, 3));
+		innerDustLabel = new JLabel("실내먼지");
 		innerDustText = new JLabel();
-		innerDustText.setText("실내먼지");
+		innerDustText.setText("0");
 		innerDustBtn = new JButton("실외 먼지 변화");
 		
 		innerDustBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				InnerDustLineChart chart = new InnerDustLineChart("실내 미세먼지 변화", "InnerDust");
+				InnerDustLineChart chart = new InnerDustLineChart("실내 미세먼지 변화", ThreadTask.list.get(0).getRegtime().substring(0,10)+" InnerDust");
 
 				chart.pack();
 				RefineryUtilities.centerFrameOnScreen(chart);
@@ -84,21 +90,22 @@ public class MyFrame extends JFrame{
 				
 			}
 		});
-
+		p3.add(innerDustLabel);
 		p3.add(innerDustText);
 		p3.add(innerDustBtn);
 
 		allPanel.add(p3);
 
-		p4 = new JPanel(new GridLayout(1, 2));
+		p4 = new JPanel(new GridLayout(1, 3));
+		outerDustLabel = new JLabel("실외먼지");
 		outerDustText = new JLabel();
-		outerDustText.setText("실외먼지");
+		outerDustText.setText("0");
 		outerDustBtn = new JButton("실외 먼지 변화");
 		
 		outerDustBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				OuterDustLineChart chart = new OuterDustLineChart("실내 미세먼지 변화", "InnerDust");
+				OuterDustLineChart chart = new OuterDustLineChart("실외 미세먼지 변화", ThreadTask.list.get(0).getRegtime().substring(0,10)+" OuterDust");
 
 				chart.pack();
 				RefineryUtilities.centerFrameOnScreen(chart);
@@ -106,7 +113,7 @@ public class MyFrame extends JFrame{
 				
 			}
 		});
-
+		p4.add(outerDustLabel);
 		p4.add(outerDustText);
 		p4.add(outerDustBtn);
 

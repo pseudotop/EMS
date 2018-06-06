@@ -15,21 +15,51 @@ import java.util.Properties;
 import vo.ClassEcoVO;
 
 public class ClassEcoDAO {
+	private ArrayList<ClassEcoVO> list;
 	private Connection con;
 	private PreparedStatement ps;
 	private ResultSet rs;
 
 	
-	public List<ClassEcoVO> getList(){
-		List<ClassEcoVO> list = new ArrayList<ClassEcoVO>();
+	public ClassEcoVO getCorrentInfo(){
+		ClassEcoVO vo = null;
 		StringBuffer sql = new StringBuffer();
-		sql.append("select temperature, humidity, innerdust, outerdust, to_char(sysdate-0.001,'yyyy/mm/dd hh24:mi:ss') reg_time"); 
+		sql.append("select temperature, humidity, innerdust, outerdust, to_char(reg_time,'yyyy/mm/dd hh24:mi:ss') reg_time"); 
 		sql.append(" from classeco");
 		sql.append(" where reg_time = (select max(reg_time) from classeco)");
 		
 		if(connect()) {
 			try {
 				ps = con.prepareStatement(sql.toString());
+				if(ps != null) {
+					rs = ps.executeQuery();
+					
+					if(rs.next()) {
+						vo = new ClassEcoVO();
+						vo.setTemperature(rs.getDouble("temperature"));
+						vo.setHumidity(rs.getDouble("humidity"));
+						vo.setInnerDust(rs.getDouble("innerDust"));
+						vo.setOuterDust(rs.getDouble("outerDust"));
+						vo.setRegTime(rs.getString("reg_time"));
+					}
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		close();
+		
+		return vo;
+	}
+	
+	public List<ClassEcoVO> list() {
+		list = new ArrayList<ClassEcoVO>();
+		String sql = "select * from (select * from classeco order by rownum desc) where rownum<=10";
+		
+		if(connect()) {
+			try {
+				ps = con.prepareStatement(sql);
 				if(ps != null) {
 					rs = ps.executeQuery();
 					
@@ -49,7 +79,6 @@ public class ClassEcoDAO {
 		}
 		
 		close();
-		
 		return list;
 	}
 	
