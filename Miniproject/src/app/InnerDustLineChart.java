@@ -8,6 +8,8 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
+import thread.ThreadTask;
+
 public class InnerDustLineChart extends JDialog {
 
 	public InnerDustLineChart(String applicationTitle, String chartTitle) {
@@ -16,7 +18,7 @@ public class InnerDustLineChart extends JDialog {
 				PlotOrientation.VERTICAL, true, true, false);
 		
 		ChartPanel chartPanel = new ChartPanel(lineChart);
-		chartPanel.setPreferredSize(new java.awt.Dimension(560, 367));
+		chartPanel.setPreferredSize(new java.awt.Dimension(1000, 367));
 		setContentPane(chartPanel);
 		
 	}	
@@ -25,16 +27,9 @@ public class InnerDustLineChart extends JDialog {
 		String innerDust = "innerDust";
 
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-		dataset.addValue(100, innerDust, "10:30");
-		dataset.addValue(80, innerDust, "10:31");
-		dataset.addValue(70, innerDust, "10:32");
-		dataset.addValue(75, innerDust, "10:33");
-		dataset.addValue(50, innerDust, "10:34");
-		dataset.addValue(43, innerDust, "10:35");
-		dataset.addValue(42, innerDust, "10:36");
-		dataset.addValue(42, innerDust, "10:37");
-		dataset.addValue(50, innerDust, "10:38");
-		dataset.addValue(55, innerDust, "10:39");
+		for(int i=0;i<ThreadTask.list.size();i++) {
+			dataset.addValue(ThreadTask.list.get(i).getInnerDust(), innerDust, ThreadTask.list.get(i).getRegtime().substring(11));
+		}
 
 		return dataset;
 	}

@@ -1,4 +1,4 @@
-package classEco;
+package vo;
 
 import java.io.Serializable;
 

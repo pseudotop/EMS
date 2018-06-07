@@ -1,32 +1,42 @@
-package classEco;
+package thread;
 
 import java.util.Iterator;
 import java.util.List;
 
+import app.MyFrame;
+import dao.ClassEcoDAO;
+import vo.ClassEcoVO;
+
 public class ThreadTask implements Runnable {
 	ClassEcoDAO dao = new ClassEcoDAO();
-	List<ClassEcoVO> list = dao.getList();
+	public static List<ClassEcoVO> list;
 
 	@Override
 	public void run() {
 		while (true) {
 			dataControl();
+			list();
 		}
 	}
 
 	public void dataControl() {
-		Iterator<ClassEcoVO> iter = list.iterator();
+		ClassEcoVO vo = dao.getCorrentInfo();
 		
-		if(iter.hasNext()) {
+		if(vo != null) {
 			long time = System.currentTimeMillis();
 			
-			ClassEcoVO vo = iter.next();
 			System.out.print(" | [Temperature] " + vo.getTemperature());
 			System.out.print(" | [Humidity] " + vo.getHumidity());
 			System.out.print(" | InnerDust] " + vo.getInnerDust());
 			System.out.print(" | OuterDust] " + vo.getOuterDust());
 			System.out.print(" | RegTime] " + vo.getRegtime());
 			System.out.println();
+			//값을 GUI로 보여줌
+			MyFrame.tempText.setText(String.valueOf(vo.getTemperature()));
+			MyFrame.humidityText.setText(String.valueOf(vo.getHumidity()));
+			MyFrame.innerDustText.setText(String.valueOf(vo.getInnerDust()));
+			MyFrame.outerDustText.setText(String.valueOf(vo.getOuterDust()));
+			
 			
 			try {
 				Thread.sleep(1000);
@@ -35,5 +45,9 @@ public class ThreadTask implements Runnable {
 			}
 			
 		}
+	}
+	
+	public void list() {
+		list = dao.list();
 	}
 }

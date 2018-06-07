@@ -8,6 +8,8 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
+import thread.ThreadTask;
+
 public class TempLineChart extends JDialog {
 
 	public TempLineChart(String applicationTitle, String chartTitle) {
@@ -16,7 +18,7 @@ public class TempLineChart extends JDialog {
 				PlotOrientation.VERTICAL, true, true, false);
 		
 		ChartPanel chartPanel = new ChartPanel(lineChart);
-		chartPanel.setPreferredSize(new java.awt.Dimension(560, 367));
+		chartPanel.setPreferredSize(new java.awt.Dimension(1000, 367));
 		setContentPane(chartPanel);
 		
 	}	
@@ -25,16 +27,11 @@ public class TempLineChart extends JDialog {
 		String temp = "temperature";
 
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-		dataset.addValue(15, temp, "10:30");
-		dataset.addValue(17, temp, "10:31");
-		dataset.addValue(18, temp, "10:32");
-		dataset.addValue(20, temp, "10:33");
-		dataset.addValue(22, temp, "10:34");
-		dataset.addValue(23, temp, "10:35");
-		dataset.addValue(22, temp, "10:36");
-		dataset.addValue(20, temp, "10:37");
-		dataset.addValue(18, temp, "10:38");
-		dataset.addValue(16, temp, "10:39");
+		
+		for(int i=0;i<ThreadTask.list.size();i++) {
+			dataset.addValue(ThreadTask.list.get(i).getTemperature(), temp, ThreadTask.list.get(i).getRegtime().substring(11));
+		}
+
 
 		return dataset;
 	}

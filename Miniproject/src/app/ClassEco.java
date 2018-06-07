@@ -1,14 +1,10 @@
-package classEco;
+package app;
 
-/*
- * 강의실 환경체크 서비스
- *  - 체크대상 : 내부온도, 내부습도, 내부먼지, 외부먼지
- *  - 멀티쓰레드 구현하여 실시간(1분텀) 데이터 반영
- */
+import thread.ThreadTask;
+
 public class ClassEco {
-
 	public static void main(String[] args) {
-		
+		new MyFrame();
 		Thread thread1 = new Thread(new ThreadTask());
 		thread1.start();
 		

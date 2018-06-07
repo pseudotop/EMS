@@ -8,6 +8,8 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
+import thread.ThreadTask;
+
 public class OuterDustLineChart extends JDialog {
 
 	public OuterDustLineChart(String applicationTitle, String chartTitle) {
@@ -16,7 +18,7 @@ public class OuterDustLineChart extends JDialog {
 				PlotOrientation.VERTICAL, true, true, false);
 		
 		ChartPanel chartPanel = new ChartPanel(lineChart);
-		chartPanel.setPreferredSize(new java.awt.Dimension(560, 367));
+		chartPanel.setPreferredSize(new java.awt.Dimension(1000, 367));
 		setContentPane(chartPanel);
 		
 	}	
@@ -25,16 +27,9 @@ public class OuterDustLineChart extends JDialog {
 		String outerDust = "outerDust";
 
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-		dataset.addValue(120, outerDust, "10:30");
-		dataset.addValue(130, outerDust, "10:31");
-		dataset.addValue(135, outerDust, "10:32");
-		dataset.addValue(150, outerDust, "10:33");
-		dataset.addValue(160, outerDust, "10:34");
-		dataset.addValue(132, outerDust, "10:35");
-		dataset.addValue(131, outerDust, "10:36");
-		dataset.addValue(112, outerDust, "10:37");
-		dataset.addValue(100, outerDust, "10:38");
-		dataset.addValue(76, outerDust, "10:39");
+		for(int i=0;i<ThreadTask.list.size();i++) {
+			dataset.addValue(ThreadTask.list.get(i).getOuterDust(), outerDust, ThreadTask.list.get(i).getRegtime().substring(11));
+		}
 
 		return dataset;
 	}
