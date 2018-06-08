@@ -1,6 +1,5 @@
 package thread;
 
-import java.util.Iterator;
 import java.util.List;
 
 import app.MyFrame;
@@ -35,7 +34,6 @@ public class ThreadTask implements Runnable {
 			MyFrame.tempText.setText(String.valueOf(vo.getTemperature()));
 			MyFrame.humidityText.setText(String.valueOf(vo.getHumidity()));
 			MyFrame.innerDustText.setText(String.valueOf(vo.getInnerDust()));
-			MyFrame.outerDustText.setText(String.valueOf(vo.getOuterDust()));
 			
 			
 			try {

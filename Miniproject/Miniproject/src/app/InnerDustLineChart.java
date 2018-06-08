@@ -21,11 +21,11 @@ public class InnerDustLineChart extends JDialog {
 		chartPanel.setPreferredSize(new java.awt.Dimension(1000, 367));
 		setContentPane(chartPanel);
 		
-	}	
+	}
 
 	private DefaultCategoryDataset createDataset() {
 		String innerDust = "innerDust";
-
+		
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		for(int i=0;i<ThreadTask.list.size();i++) {
 			dataset.addValue(ThreadTask.list.get(i).getInnerDust(), innerDust, ThreadTask.list.get(i).getRegtime().substring(11));

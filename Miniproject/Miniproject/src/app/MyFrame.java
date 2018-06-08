@@ -15,9 +15,9 @@ import org.jfree.ui.RefineryUtilities;
 import thread.ThreadTask;
 
 public class MyFrame extends JFrame{
+	public static JLabel tempText, humidityText, innerDustText, outerDustText;
 	JPanel allPanel, p1, p2, p3, p4;
 	JButton tempBtn, humidityBtn, innerDustBtn, outerDustBtn;
-	public static JLabel tempText, humidityText, innerDustText, outerDustText;
 	JLabel tempLabel,humidityLabel,innerDustLabel,outerDustLabel;
 
 	public MyFrame() {
@@ -25,9 +25,8 @@ public class MyFrame extends JFrame{
 		
 		setTitle("강의실 환경 관리 시스템");
 
-		allPanel = new JPanel(new FlowLayout());
+		allPanel = new JPanel(new GridLayout(3,3));
 
-		p1 = new JPanel(new GridLayout(1, 3));
 		tempLabel = new JLabel("온도");
 		
 		tempText = new JLabel();
@@ -45,13 +44,10 @@ public class MyFrame extends JFrame{
 				
 			}
 		});
-		p1.add(tempLabel);
-		p1.add(tempText);
-		p1.add(tempBtn);
+		allPanel.add(tempLabel);
+		allPanel.add(tempText);
+		allPanel.add(tempBtn);
 
-		allPanel.add(p1);
-
-		p2 = new JPanel(new GridLayout(1, 3));
 		humidityLabel = new JLabel("습도");
 		humidityText = new JLabel();
 		humidityText.setText("0");
@@ -67,17 +63,14 @@ public class MyFrame extends JFrame{
 				
 			}
 		});
-		p2.add(humidityLabel);
-		p2.add(humidityText);
-		p2.add(humidityBtn);
+		allPanel.add(humidityLabel);
+		allPanel.add(humidityText);
+		allPanel.add(humidityBtn);
 
-		allPanel.add(p2);
-
-		p3 = new JPanel(new GridLayout(1, 3));
 		innerDustLabel = new JLabel("실내먼지");
 		innerDustText = new JLabel();
 		innerDustText.setText("0");
-		innerDustBtn = new JButton("실외 먼지 변화");
+		innerDustBtn = new JButton("실내 먼지 변화");
 		
 		innerDustBtn.addActionListener(new ActionListener() {
 			@Override
@@ -90,34 +83,9 @@ public class MyFrame extends JFrame{
 				
 			}
 		});
-		p3.add(innerDustLabel);
-		p3.add(innerDustText);
-		p3.add(innerDustBtn);
-
-		allPanel.add(p3);
-
-		p4 = new JPanel(new GridLayout(1, 3));
-		outerDustLabel = new JLabel("실외먼지");
-		outerDustText = new JLabel();
-		outerDustText.setText("0");
-		outerDustBtn = new JButton("실외 먼지 변화");
-		
-		outerDustBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				OuterDustLineChart chart = new OuterDustLineChart("실외 미세먼지 변화", ThreadTask.list.get(0).getRegtime().substring(0,10)+" OuterDust");
-
-				chart.pack();
-				RefineryUtilities.centerFrameOnScreen(chart);
-				chart.setVisible(true);
-				
-			}
-		});
-		p4.add(outerDustLabel);
-		p4.add(outerDustText);
-		p4.add(outerDustBtn);
-
-		allPanel.add(p4);
+		allPanel.add(innerDustLabel);
+		allPanel.add(innerDustText);
+		allPanel.add(innerDustBtn);
 
 		add(allPanel);
 		setVisible(true);

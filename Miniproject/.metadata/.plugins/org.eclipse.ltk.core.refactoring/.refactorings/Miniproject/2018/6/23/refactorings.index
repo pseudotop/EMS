@@ -1,0 +1,24 @@
+1528075950819	Rename package 'DBUtil'
+1528075998393	Rename package 'environmentVO'
+1528166234644	Move compilation unit
+1528166558378	Rename type 'LineChart_AWT'
+1528174257668	Rename type 'MyFraem'
+1528175066998	Rename local variable 'temp'
+1528179773100	Delete elements
+1528181609255	Rename local variable 'temp'
+1528182355868	Rename field 'indoorDustBtn'
+1528182363244	Rename field 'indoorDustText'
+1528182449280	Rename field 'outdoorDustText'
+1528182466790	Rename field 'outterDust'
+1528182493087	Rename field 'outterDustBtn'
+1528182501938	Rename field 'outterDustText'
+1528182674136	Rename local variable 'innerDust'
+1528182771487	Delete element
+1528182781607	Delete element
+1528183400307	Delete element
+1528183406708	Delete element
+1528183413681	Delete element
+1528188637974	Rename type 'Test2'
+1528188714890	Rename package 'ThreadTask'
+1528274053787	Rename method 'getList'
+1528331710755	Delete element
