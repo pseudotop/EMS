@@ -1,0 +1,6 @@
+
+public class Emplements {
+	int temp;
+	int humidity;
+	int dust;
+}

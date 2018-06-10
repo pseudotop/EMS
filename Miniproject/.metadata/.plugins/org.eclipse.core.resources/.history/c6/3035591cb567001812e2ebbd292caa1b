@@ -1,0 +1,38 @@
+package app;
+
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+
+public class Test extends JFrame {
+	public Test() {
+		this.setSize(800,500);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setTitle("강의실 환경 관리 시스템");
+		
+		JPanel allPanel = new JPanel(new FlowLayout());
+		
+		JPanel p1 = new JPanel(new GridLayout(1, 2));
+		JLabel tempText = new JLabel();
+		tempText.setText("온도");
+		JButton tempButton = new JButton("온도 변화");
+		p1.add(tempText);
+		p1.add(tempButton);
+		
+		allPanel.add(p1);
+		
+		this.setVisible(true);
+		
+		JLabel humityText = new JLabel();
+		tempText.setText("습도");
+	}
+	
+	public static void main(String[] args) {
+		MyFrame f = new MyFrame();	
+	}
+}

@@ -74,7 +74,7 @@ public class ClassEcoDAO {
 					}
 				}
 			} catch (SQLException e) {
-				e.printStackTrace();
+				System.out.println("½ÇÆÐ");
 			}
 		}
 		
@@ -91,11 +91,11 @@ public class ClassEcoDAO {
 			read = new FileReader("db_info.properties");
 			prop.load(read);
 			String url = prop.getProperty("url");
-			String id = prop.getProperty("user");
+			String id = prop.getProperty("id");
 			String pw = prop.getProperty("pw");
-			System.out.printf("url=%s, user=%s, pw=%s\n" , url, id, pw);
+			System.out.printf("url=%s, id=%s, pw=%s\n" , url, id, pw);
 
-			Class.forName("oracle.jdbc.OracleDriver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection(url, id, pw);
 			System.out.println("con : " + con);
 
