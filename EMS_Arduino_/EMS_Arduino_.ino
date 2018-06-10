@@ -29,8 +29,6 @@ void setup() {
 
   starttime = millis();  //현재 시간 대입
   lowpulseoccupancy = 0;
-  starttime = millis();
-
 }
 
 void loop() {
@@ -38,32 +36,35 @@ void loop() {
   int err;
   duration = pulseIn(pin, LOW); 
   lowpulseoccupancy = lowpulseoccupancy+duration;
-  
+   
   if ((millis()-starttime) >= sampletime_ms && (err=dht11.read(humi,temp))==0)  {   //만약 샘플 시간이 5초라면(위에서 정한 샘플 시간)
     ratio = lowpulseoccupancy/(sampletime_ms*10.0);  // 정수 백분율
     concentration = 1.1*pow(ratio,3)-3.8*pow(ratio,2)+520*ratio+0.62; // 미세먼지 센서 사양 시트 곡선 사용
     pcsPerCF = concentration * 100;  // 입자 농도에 100을 곱하면 입자당 CF값
     ugm3 = pcsPerCF / 13000;  //입자당 CF를 13000으로 나누면 미터세제곱당 마이크로그람의 미세먼지 측정값
 
-    String ugm3Str = "ugm3 = ";
-    String ugm3Value = String(ugm3);
-    String tempStr = " temp = ";
-    String tempValue = String(temp);
-    String humiStr = " humi = ";
-    String humiValue = String(humi);
-    String result = "";
+    //String ugm3Str = "ugm3 = ";
+    //String ugm3Value = String(ugm3);
+    //String tempStr = " temp = ";
+    //String tempValue = String(temp);
+    //String humiStr = " humi = ";
+    //String humiValue = String(humi);
+    //String result = "";
     
-    ugm3Str.concat(ugm3Value);
-    tempStr.concat(tempValue);
-    humiStr.concat(humiValue);
+    //ugm3Str.concat(ugm3Value);
+    //tempStr.concat(tempValue);
+    //humiStr.concat(humiValue);
 
-    ugm3Str.concat(tempStr);
-    ugm3Str.concat(humiStr);
-    Serial.println(ugm3Str);
-    
+    //ugm3Str.concat(tempStr);
+    //ugm3Str.concat(humiStr);
+    //Serial.println(ugm3Str);
+    Serial.println(temp);
+    Serial.println(humi);
+    Serial.println(ugm3);
     lowpulseoccupancy = 0;
     starttime = millis();
 
   }
 }
+
 
