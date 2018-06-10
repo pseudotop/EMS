@@ -18,24 +18,26 @@ public class MyFrame extends JFrame{
 	public static JLabel tempText, humidityText, innerDustText, outerDustText;
 	JPanel allPanel, p1, p2, p3, p4;
 	JButton tempBtn, humidityBtn, innerDustBtn, outerDustBtn;
+
 	JLabel tempLabel,humidityLabel,innerDustLabel,outerDustLabel;
 
 	public MyFrame() {
 		setSize(400, 200);	
 		
-		setTitle("°­ÀÇ½Ç È¯°æ °ü¸® ½Ã½ºÅÛ");
+		setTitle("ê°•ì˜ì‹¤ í™˜ê²½ ê´€ë¦¬ ì‹œìŠ¤í…œ");
 
 		allPanel = new JPanel(new GridLayout(4, 3));
 
-		tempLabel = new JLabel("¿Âµµ");
+		tempLabel = new JLabel("ì˜¨ë„");
 		tempLabel.setSize(100,300 );
 		tempText = new JLabel();
 		tempText.setText("0");
-		tempBtn = new JButton("¿Âµµ º¯È­");
+
+		tempBtn = new JButton("ì˜¨ë„ ë³€í™”");
 		tempBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				TempLineChart chart = new TempLineChart("¿Âµµ º¯È­", ThreadTask.list.get(0).getRegtime().substring(0,10)+" Temperature");
+				TempLineChart chart = new TempLineChart("ì˜¨ë„ ë³€í™”", ThreadTask.list.get(0).getRegtime().substring(0,10)+" Temperature");
 				
 				chart.pack();
 				RefineryUtilities.centerFrameOnScreen(chart);
@@ -43,18 +45,19 @@ public class MyFrame extends JFrame{
 				
 			}
 		});
+
 		allPanel.add(tempLabel);
 		allPanel.add(tempText);
 		allPanel.add(tempBtn);
-
-		humidityLabel = new JLabel("½Àµµ");
+    
+		humidityLabel = new JLabel("ìŠµë„");
 		humidityText = new JLabel();
 		humidityText.setText("0");
-		humidityBtn = new JButton("½Àµµ º¯È­");
+		humidityBtn = new JButton("ìŠµë„ ë³€í™”");
 		humidityBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				HumidityLineChart chart = new HumidityLineChart("½Àµµ º¯È­", ThreadTask.list.get(0).getRegtime().substring(0,10)+" Humidity");
+				HumidityLineChart chart = new HumidityLineChart("ìŠµë„ ë³€í™”", ThreadTask.list.get(0).getRegtime().substring(0,10)+" Humidity");
 
 				chart.pack();
 				RefineryUtilities.centerFrameOnScreen(chart);
@@ -62,19 +65,20 @@ public class MyFrame extends JFrame{
 				
 			}
 		});
+    
 		allPanel.add(humidityLabel);
 		allPanel.add(humidityText);
 		allPanel.add(humidityBtn);
 
-		innerDustLabel = new JLabel("½Ç³»¸ÕÁö");
+		innerDustLabel = new JLabel("ì‹¤ë‚´ë¨¼ì§€");
 		innerDustText = new JLabel();
 		innerDustText.setText("0");
-		innerDustBtn = new JButton("½Ç¿Ü ¸ÕÁö º¯È­");
+		innerDustBtn = new JButton("ì‹¤ì™¸ ë¨¼ì§€ ë³€í™”");
 		
 		innerDustBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				InnerDustLineChart chart = new InnerDustLineChart("½Ç³» ¹Ì¼¼¸ÕÁö º¯È­", ThreadTask.list.get(0).getRegtime().substring(0,10)+" InnerDust");
+				InnerDustLineChart chart = new InnerDustLineChart("ì‹¤ë‚´ ë¯¸ì„¸ë¨¼ì§€ ë³€í™”", ThreadTask.list.get(0).getRegtime().substring(0,10)+" InnerDust");
 
 				chart.pack();
 				RefineryUtilities.centerFrameOnScreen(chart);
@@ -82,19 +86,20 @@ public class MyFrame extends JFrame{
 				
 			}
 		});
+
 		allPanel.add(innerDustLabel);
 		allPanel.add(innerDustText);
 		allPanel.add(innerDustBtn);
 
-		outerDustLabel = new JLabel("½Ç¿Ü¸ÕÁö");
+		outerDustLabel = new JLabel("ì‹¤ì™¸ë¨¼ì§€");
 		outerDustText = new JLabel();
 		outerDustText.setText("0");
-		outerDustBtn = new JButton("½Ç¿Ü ¸ÕÁö º¯È­");
+		outerDustBtn = new JButton("ì‹¤ì™¸ ë¨¼ì§€ ë³€í™”");
 		
 		outerDustBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				OuterDustLineChart chart = new OuterDustLineChart("½Ç¿Ü ¹Ì¼¼¸ÕÁö º¯È­", ThreadTask.list.get(0).getRegtime().substring(0,10)+" OuterDust");
+				OuterDustLineChart chart = new OuterDustLineChart("ì‹¤ì™¸ ë¯¸ì„¸ë¨¼ì§€ ë³€í™”", ThreadTask.list.get(0).getRegtime().substring(0,10)+" OuterDust");
 
 				chart.pack();
 				RefineryUtilities.centerFrameOnScreen(chart);
@@ -102,6 +107,7 @@ public class MyFrame extends JFrame{
 				
 			}
 		});
+
 		allPanel.add(outerDustLabel);
 		allPanel.add(outerDustText);
 		allPanel.add(outerDustBtn);

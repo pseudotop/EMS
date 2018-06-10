@@ -1,0 +1,14 @@
+package vo;
+
+import java.util.Date;
+
+public class EnvironmentVO {
+	private Date environmentDate;
+	private int temperature;
+	private int humidity;
+	private int indoorDust;
+	private int outdoorDust;
+	
+	
+	
+}

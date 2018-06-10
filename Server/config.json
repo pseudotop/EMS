@@ -1,0 +1,7 @@
+{
+  "user" : "project",
+  "password" : "project1234",
+  "host" : "127.0.0.1",
+  "database" : "project",
+  "raise_on_warnings" : true
+}
